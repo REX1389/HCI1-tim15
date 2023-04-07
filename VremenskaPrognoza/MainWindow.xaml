@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <ComboBox x:Name="cityComboBox" DisplayMemberPath="DisplayName" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" 
+                  IsEditable="True" TextBoxBase.TextChanged="cityComboBox_TextChanged" IsTextSearchEnabled="False" TextSearch.TextPath="Name" StaysOpenOnEdit="True"/>
     </Grid>
 </Window>
