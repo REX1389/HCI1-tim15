@@ -9,7 +9,9 @@
 *.user
 *.userosscache
 *.sln.docstates
-VremenskaPrognoza/bin/
+bin/Debug/
+.idea/
+obj/Debug
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
