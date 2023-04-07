@@ -54,16 +54,16 @@ namespace VremenskaPrognoza
         private class City
         {
             public int Id { get; set; }
-            public string Name { get; set; }
+            public string name { get; set; }
             public string Region { get; set; }
             public string Country { get; set; }
             public double Lat { get; set; }
             public double Lon { get; set; }
             public string Url { get; set; }
-            public string DisplayName => Name;
+            public string DisplayName => name;
             public override string ToString()
             {
-                return Name;
+                return name;
             }
         }
     }
