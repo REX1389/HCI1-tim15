@@ -85,8 +85,21 @@ namespace VremenskaPrognoza
             currentWeatherImage.Source = new BitmapImage(new Uri("http:"+iconUri));
             
             BigTemp.Text = data.current.temp_c.ToString() + "° C";
-            maxTemp.Text = data.forecast.forecastday[0].day.maxtemp_c.ToString() + "° C";
-            minTemp.Text = data.forecast.forecastday[0].day.mintemp_c.ToString() + "° C";
+            minMax.Text = data.forecast.forecastday[0].day.mintemp_c.ToString() + "/" +
+                          data.forecast.forecastday[0].day.maxtemp_c.ToString()+ "° C";
+            // maxTemp.Text = data.forecast.forecastday[0].day.maxtemp_c.ToString() + "° C";
+            // minTemp.Text = data.forecast.forecastday[0].day.mintemp_c.ToString() + "° C";
+            if (data.forecast.forecastday[0].day.daily_chance_of_rain <
+                data.forecast.forecastday[0].day.daily_chance_of_snow)
+            {
+                chanceOfRainSnow.Text = "Chance of snow: ";
+                rainSnow.Text = data.forecast.forecastday[0].day.daily_chance_of_snow.ToString() + "%";
+            }
+            else
+            {
+                chanceOfRainSnow.Text = "Chance of rain: ";
+                rainSnow.Text = data.forecast.forecastday[0].day.daily_chance_of_rain.ToString() + "%";
+            }
             feelsLike.Text = data.current.feelslike_c.ToString() + "° C";
             windDirection.Text = data.current.wind_dir;
             precipitation.Text = data.current.precip_mm.ToString() + "mm";
@@ -96,7 +109,8 @@ namespace VremenskaPrognoza
             windSpeed.Text = data.current.wind_kph.ToString() + " kph";
             visibility.Text = data.current.vis_km.ToString() + "km";
             pressure.Text = data.current.pressure_mb.ToString() +"Mbar";
-            
+            // alert.Text = data.alerts.alerts.ToString();
+
         }
         private class City
         {

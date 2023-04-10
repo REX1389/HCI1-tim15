@@ -55,8 +55,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Min temp:" />
-                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="minTemp" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Min/max temp:" />
+                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="minMax" />
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Feels like: " />
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="" x:Name="feelsLike" />
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Wind direction:" />
@@ -68,8 +68,8 @@
                 <TextBlock Grid.Row="5" Grid.Column="0" Text="UV:" />
                 <TextBlock Grid.Row="5" Grid.Column="1" Text="" x:Name="uv" />
 
-                <TextBlock Grid.Row="0" Grid.Column="2" Text="Max temp:" />
-                <TextBlock Grid.Row="0" Grid.Column="3" Text="" x:Name="maxTemp" />
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Chance of:" x:Name="chanceOfRainSnow"/>
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="" x:Name="rainSnow" />
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="Clouds: " />
                 <TextBlock Grid.Row="1" Grid.Column="3" Text="" x:Name="clouds" />
                 <TextBlock Grid.Row="2" Grid.Column="2" Text="Wind speed: " />
