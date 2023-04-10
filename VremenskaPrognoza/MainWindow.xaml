@@ -1,13 +1,127 @@
 ﻿<Window x:Class="VremenskaPrognoza.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:VremenskaPrognoza"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="My Window" Height="600" Width="800">
     <Grid>
-        <ComboBox x:Name="cityComboBox" DisplayMemberPath="DisplayName" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" 
-                  IsEditable="True" TextBoxBase.TextChanged="cityComboBox_TextChanged" IsTextSearchEnabled="False" TextSearch.TextPath="Name" StaysOpenOnEdit="True"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!-- Current forecast -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ComboBox Grid.Column="0" Grid.Row="0" x:Name="CityComboBox" DisplayMemberPath="DisplayName"
+                      HorizontalAlignment="Left" Margin="10,10,10,10"
+                      VerticalAlignment="Top" Width="200"
+                      IsEditable="True" TextBoxBase.TextChanged="cityComboBox_TextChanged" IsTextSearchEnabled="False"
+                      TextSearch.TextPath="Name" StaysOpenOnEdit="True" />
+
+            <!-- Temperature -->
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="35^ C" FontSize="36" TextAlignment="Center" />
+
+            <!-- TextBlock-value pairs -->
+            <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="0, 10, 0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Text 1" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Value 1" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Text 2" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="Value 2" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Text 3" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="Value 3" />
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Text 4" />
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="Value 4" />
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Text 5" />
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="Value 5" />
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Text 6" />
+                <TextBlock Grid.Row="5" Grid.Column="1" Text="Value 6" />
+
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Text 7" />
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="Value 7" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Text 8" />
+                <TextBlock Grid.Row="1" Grid.Column="3" Text="Value 8" />
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="Text 9" />
+                <TextBlock Grid.Row="2" Grid.Column="3" Text="Value 9" />
+                <TextBlock Grid.Row="3" Grid.Column="2" Text="Text 10" />
+                <TextBlock Grid.Row="3" Grid.Column="3" Text="Value 10" />
+                <TextBlock Grid.Row="4" Grid.Column="2" Text="Text 11" />
+                <TextBlock Grid.Row="4" Grid.Column="3" Text="Value 11" />
+                <TextBlock Grid.Row="5" Grid.Column="2" Text="Text 12" />
+                <TextBlock Grid.Row="5" Grid.Column="3" Text="Value 12" />
+            </Grid>
+        </Grid>
+        <!-- days, future, past -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Mon" HorizontalAlignment="Center"/>
+                        <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center"/>
+                        <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1">
+                <StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Tue" HorizontalAlignment="Center"/>
+                        <Image Source="64x64/night/248.png" Grid.Row="1" HorizontalAlignment="Center"/>
+                        <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+            <!-- TODO add 9 other stack panels -->
+        </Grid>
+        <!-- hourly -->
+        <Grid Grid.Row="2" Margin="10, 10">
+            <ComboBox></ComboBox>
+            <!-- TODO add hourly graph -->
+        </Grid>
     </Grid>
+
 </Window>
