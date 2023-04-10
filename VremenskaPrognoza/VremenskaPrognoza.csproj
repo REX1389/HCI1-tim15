@@ -204,4 +204,9 @@
     <Resource Include="64x64\night\Thumbs.db" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="LiveCharts" Version="0.9.7" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+  </ItemGroup>
+
 </Project>

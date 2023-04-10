@@ -9,9 +9,11 @@
 *.user
 *.userosscache
 *.sln.docstates
-bin/Debug/
+VremenskaPrognoza/bin/Debug/
+VremenskaPrognoza/obj/Debug/
+VremenskaPrognoza/.vs/
 .idea/
-obj/Debug/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -363,3 +365,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+VremenskaPrognoza/.vs/
