@@ -22,11 +22,20 @@
             <ComboBox Grid.Column="0" Grid.Row="0" x:Name="CityComboBox" DisplayMemberPath="DisplayName"
                       HorizontalAlignment="Left" Margin="10,10,10,10"
                       VerticalAlignment="Top" Width="200"
+                      SelectionChanged="CityComboBox_OnSelectionChanged"
                       IsEditable="True" TextBoxBase.TextChanged="cityComboBox_TextChanged" IsTextSearchEnabled="False"
                       TextSearch.TextPath="Name" StaysOpenOnEdit="True" />
-
+            <Grid Grid.Column="0" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column= "0" Text="" FontSize="36" TextAlignment="Center"
+                            x:Name="BigTemp" />
+                <Image Grid.Column="1" x:Name="currentWeatherImage" ></Image>
+            </Grid>
             <!-- Temperature -->
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="35^ C" FontSize="36" TextAlignment="Center" />
+
 
             <!-- TextBlock-value pairs -->
             <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="0, 10, 0, 10">
@@ -45,31 +54,31 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Text 1" />
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="Value 1" />
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Text 2" />
-                <TextBlock Grid.Row="1" Grid.Column="1" Text="Value 2" />
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Text 3" />
-                <TextBlock Grid.Row="2" Grid.Column="1" Text="Value 3" />
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="Text 4" />
-                <TextBlock Grid.Row="3" Grid.Column="1" Text="Value 4" />
-                <TextBlock Grid.Row="4" Grid.Column="0" Text="Text 5" />
-                <TextBlock Grid.Row="4" Grid.Column="1" Text="Value 5" />
-                <TextBlock Grid.Row="5" Grid.Column="0" Text="Text 6" />
-                <TextBlock Grid.Row="5" Grid.Column="1" Text="Value 6" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Min temp:" />
+                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="minTemp" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Feels like: " />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="" x:Name="feelsLike" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Wind direction:" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="" x:Name="windDirection" />
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Precipitation: " />
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="" x:Name="precipitation" />
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Humidity: " />
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="" x:Name="humidity" />
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="UV:" />
+                <TextBlock Grid.Row="5" Grid.Column="1" Text="" x:Name="uv" />
 
-                <TextBlock Grid.Row="0" Grid.Column="2" Text="Text 7" />
-                <TextBlock Grid.Row="0" Grid.Column="3" Text="Value 7" />
-                <TextBlock Grid.Row="1" Grid.Column="2" Text="Text 8" />
-                <TextBlock Grid.Row="1" Grid.Column="3" Text="Value 8" />
-                <TextBlock Grid.Row="2" Grid.Column="2" Text="Text 9" />
-                <TextBlock Grid.Row="2" Grid.Column="3" Text="Value 9" />
-                <TextBlock Grid.Row="3" Grid.Column="2" Text="Text 10" />
-                <TextBlock Grid.Row="3" Grid.Column="3" Text="Value 10" />
-                <TextBlock Grid.Row="4" Grid.Column="2" Text="Text 11" />
-                <TextBlock Grid.Row="4" Grid.Column="3" Text="Value 11" />
-                <TextBlock Grid.Row="5" Grid.Column="2" Text="Text 12" />
-                <TextBlock Grid.Row="5" Grid.Column="3" Text="Value 12" />
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Max temp:" />
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="" x:Name="maxTemp" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Clouds: " />
+                <TextBlock Grid.Row="1" Grid.Column="3" Text="" x:Name="clouds" />
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="Wind speed: " />
+                <TextBlock Grid.Row="2" Grid.Column="3" Text="" x:Name="windSpeed" />
+                <TextBlock Grid.Row="3" Grid.Column="2" Text="Visibility: " />
+                <TextBlock Grid.Row="3" Grid.Column="3" Text="" x:Name="visibility" />
+                <TextBlock Grid.Row="4" Grid.Column="2" Text="Pressure:" />
+                <TextBlock Grid.Row="4" Grid.Column="3" Text="" x:Name="pressure" />
+                <TextBlock Grid.Row="5" Grid.Column="2" Text="Alerts: " />
+                <TextBlock Grid.Row="5" Grid.Column="3" Text="" x:Name="alert" />
             </Grid>
         </Grid>
         <!-- days, future, past -->
@@ -91,13 +100,13 @@
                 <StackPanel>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Mon" HorizontalAlignment="Center"/>
-                        <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center"/>
-                        <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Mon" HorizontalAlignment="Center" />
+                        <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
                     </Grid>
                 </StackPanel>
             </StackPanel>
@@ -105,13 +114,13 @@
                 <StackPanel>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Tue" HorizontalAlignment="Center"/>
-                        <Image Source="64x64/night/248.png" Grid.Row="1" HorizontalAlignment="Center"/>
-                        <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Tue" HorizontalAlignment="Center" />
+                        <Image Source="64x64/night/248.png" Grid.Row="1" HorizontalAlignment="Center" />
+                        <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
                     </Grid>
                 </StackPanel>
             </StackPanel>
