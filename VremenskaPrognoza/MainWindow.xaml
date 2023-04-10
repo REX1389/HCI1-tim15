@@ -97,7 +97,7 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Button Height="Auto" Width="Auto" Grid.Column="0">
+            <Button Name="Button_1" Height="Auto" Width="Auto" Grid.Column="0" BorderBrush="RoyalBlue" BorderThickness="2, 4, 2, 4" Click="Button_Click">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -109,7 +109,7 @@
                     <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
                 </Grid>
             </Button>
-            <Button Height="Auto" Width="Auto" Grid.Column="1">
+            <Button Name="Button_2" Height="Auto" Width="Auto" Grid.Column="1" BorderBrush="RoyalBlue" BorderThickness="2, 4, 2, 4">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -121,7 +121,114 @@
                     <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
                 </Grid>
             </Button>
-            <!-- TODO add 9 other stack panels -->
+            <Button Name="Button_3" Height="Auto" Width="Auto" Grid.Column="2" BorderBrush="RoyalBlue" BorderThickness="2, 4, 2, 4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Mon" HorizontalAlignment="Center" Grid.Row="0"/>
+                    <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
+                    <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
+            <Button Name="Button_4" Height="Auto" Width="Auto" Grid.Column="3" BorderBrush="RoyalBlue" BorderThickness="2, 4, 2, 4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Mon" HorizontalAlignment="Center" Grid.Row="0"/>
+                    <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
+                    <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
+            <Button Name="Button_5" Height="Auto" Width="Auto" Grid.Column="4" BorderBrush="RoyalBlue" BorderThickness="2, 4, 2, 4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Mon" HorizontalAlignment="Center" Grid.Row="0"/>
+                    <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
+                    <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
+            <Button Name="Button_6" Height="Auto" Width="Auto" Grid.Column="5" BorderBrush="RoyalBlue" BorderThickness="2, 4, 2, 4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Mon" HorizontalAlignment="Center" Grid.Row="0"/>
+                    <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
+                    <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
+            <Button Name="Button_7" Height="Auto" Width="Auto" Grid.Column="6" BorderBrush="RoyalBlue" BorderThickness="2, 4, 2, 4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Mon" HorizontalAlignment="Center" Grid.Row="0"/>
+                    <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
+                    <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
+            <Button Name="Button_8" Height="Auto" Width="Auto" Grid.Column="7" BorderBrush="RoyalBlue" BorderThickness="2, 4, 2, 0" Background="White">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Mon" HorizontalAlignment="Center" Grid.Row="0"/>
+                    <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
+                    <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
+            <Button Name="Button_9" Height="Auto" Width="Auto" Grid.Column="8" BorderBrush="RoyalBlue" BorderThickness="2, 4, 2, 4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Mon" HorizontalAlignment="Center" Grid.Row="0"/>
+                    <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
+                    <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
+            <Button Name="Button_10" Height="Auto" Width="Auto" Grid.Column="9" BorderBrush="RoyalBlue" BorderThickness="2, 4, 2, 4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Mon" HorizontalAlignment="Center" Grid.Row="0"/>
+                    <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
+                    <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
+            <Button Name="Button_11" Height="Auto" Width="Auto" Grid.Column="10" BorderBrush="RoyalBlue" BorderThickness="2, 4, 2, 4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Mon" HorizontalAlignment="Center" Grid.Row="0"/>
+                    <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
+                    <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
         </Grid>
         <!-- hourly options -->
         <Grid Grid.Row="2" Margin="10, 10">

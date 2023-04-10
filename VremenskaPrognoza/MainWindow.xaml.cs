@@ -27,8 +27,12 @@ namespace VremenskaPrognoza
             "http://api.weatherapi.com/v1/forecast.json?key={0}&q={1}&days={2}&aqi=no&alerts=yes";
         private readonly HttpClient _client;
 
+        private int ChosenDay;
+
         public MainWindow()
         {
+            ChosenDay = 8;
+
             InitializeComponent();
             _client = new HttpClient();
             
@@ -75,6 +79,10 @@ namespace VremenskaPrognoza
 
                 }
             }
+        }
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
         private void mapResponseToBoxes(WeatherData data)
@@ -261,7 +269,7 @@ namespace VremenskaPrognoza
             public int is_sun_up { get; set; }
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
