@@ -7,7 +7,6 @@ D:\Relja\Fakultet\HCI\HCI1-tim15\VremenskaPrognoza\obj\Debug\net6.0-windows\Vrem
 D:\Relja\Fakultet\HCI\HCI1-tim15\VremenskaPrognoza\obj\Debug\net6.0-windows\MainWindow.g.cs
 D:\Relja\Fakultet\HCI\HCI1-tim15\VremenskaPrognoza\obj\Debug\net6.0-windows\App.g.cs
 D:\Relja\Fakultet\HCI\HCI1-tim15\VremenskaPrognoza\obj\Debug\net6.0-windows\VremenskaPrognoza_MarkupCompile.cache
-D:\Relja\Fakultet\HCI\HCI1-tim15\VremenskaPrognoza\obj\Debug\net6.0-windows\VremenskaPrognoza_MarkupCompile.lref
 D:\Relja\Fakultet\HCI\HCI1-tim15\VremenskaPrognoza\obj\Debug\net6.0-windows\MainWindow.baml
 D:\Relja\Fakultet\HCI\HCI1-tim15\VremenskaPrognoza\obj\Debug\net6.0-windows\VremenskaPrognoza.g.resources
 D:\Relja\Fakultet\HCI\HCI1-tim15\VremenskaPrognoza\obj\Debug\net6.0-windows\VremenskaPrognoza.GeneratedMSBuildEditorConfig.editorconfig

@@ -260,6 +260,9 @@ namespace VremenskaPrognoza
             public int is_sun_up { get; set; }
         }
 
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
     }
 }

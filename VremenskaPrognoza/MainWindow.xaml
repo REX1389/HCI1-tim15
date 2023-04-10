@@ -4,9 +4,10 @@
         Title="My Window" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="20*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="65*" />
         </Grid.RowDefinitions>
         <!-- Current forecast -->
         <Grid Grid.Row="0">
@@ -84,51 +85,50 @@
         <!-- days, future, past -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <StackPanel>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="Mon" HorizontalAlignment="Center" />
-                        <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
-                        <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
-                    </Grid>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1">
-                <StackPanel>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="Tue" HorizontalAlignment="Center" />
-                        <Image Source="64x64/night/248.png" Grid.Row="1" HorizontalAlignment="Center" />
-                        <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
-                    </Grid>
-                </StackPanel>
-            </StackPanel>
+            <Button Height="Auto" Width="Auto" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Mon" HorizontalAlignment="Center" Grid.Row="0"/>
+                    <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
+                    <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
+            <Button Height="Auto" Width="Auto" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Mon" HorizontalAlignment="Center" Grid.Row="0"/>
+                    <Image Source="64x64/night/263.png" Grid.Row="1" HorizontalAlignment="Center" />
+                    <TextBlock Text="75" Grid.Row="2" HorizontalAlignment="Center" />
+                </Grid>
+            </Button>
             <!-- TODO add 9 other stack panels -->
         </Grid>
-        <!-- hourly -->
+        <!-- hourly options -->
         <Grid Grid.Row="2" Margin="10, 10">
-            <ComboBox></ComboBox>
+            <ComboBox SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
+        </Grid>
+        <!-- hourly graph -->
+        <Grid Grid.Row="3">
             <!-- TODO add hourly graph -->
         </Grid>
     </Grid>
