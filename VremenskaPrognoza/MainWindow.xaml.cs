@@ -80,9 +80,10 @@ namespace VremenskaPrognoza
         private void mapResponseToBoxes(WeatherData data)
         {
             string iconUri = data.current.condition.icon;
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.UriSource = new Uri(iconUri);
-            currentWeatherImage.Source = bitmap;
+            // BitmapImage bitmap = new BitmapImage();
+            // bitmap.UriSource = new Uri(iconUri);
+            currentWeatherImage.Source = new BitmapImage(new Uri("http:"+iconUri));
+            
             BigTemp.Text = data.current.temp_c.ToString() + "° C";
             maxTemp.Text = data.forecast.forecastday[0].day.maxtemp_c.ToString() + "° C";
             minTemp.Text = data.forecast.forecastday[0].day.mintemp_c.ToString() + "° C";
@@ -91,10 +92,10 @@ namespace VremenskaPrognoza
             precipitation.Text = data.current.precip_mm.ToString() + "mm";
             humidity.Text = data.current.humidity.ToString() + "%";
             uv.Text = data.current.uv.ToString();
-            clouds.Text = data.current.cloud.ToString();
+            clouds.Text = data.current.cloud.ToString() + "%";
             windSpeed.Text = data.current.wind_kph.ToString() + " kph";
-            visibility.Text = data.current.vis_km.ToString();
-            pressure.Text = data.current.pressure_mb.ToString();
+            visibility.Text = data.current.vis_km.ToString() + "km";
+            pressure.Text = data.current.pressure_mb.ToString() +"Mbar";
             
         }
         private class City

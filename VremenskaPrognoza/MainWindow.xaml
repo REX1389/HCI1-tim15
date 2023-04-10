@@ -28,11 +28,11 @@
             <Grid Grid.Column="0" Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column= "0" Text="" FontSize="36" TextAlignment="Center"
                             x:Name="BigTemp" />
-                <Image Grid.Column="1" x:Name="currentWeatherImage" ></Image>
+                <Image Grid.Column="1" x:Name="currentWeatherImage" Margin="10, 10"></Image>
             </Grid>
             <!-- Temperature -->
 
