@@ -31,7 +31,7 @@ namespace VremenskaPrognoza
 
         private async void cityComboBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string input = cityComboBox.Text.Trim();
+            string input = CityComboBox.Text.Trim();
             if (input.Length >= 3)
             {
                 string url = string.Format(AutoCompleteUrl, ApiKey, input);
@@ -40,14 +40,14 @@ namespace VremenskaPrognoza
                 {
                     string responseBody = await response.Content.ReadAsStringAsync();
                     List<City> cities = JsonSerializer.Deserialize<List<City>>(responseBody);
-                    cityComboBox.ItemsSource = cities;
-                    cityComboBox.DisplayMemberPath = "DisplayName";
-                    cityComboBox.IsDropDownOpen = true;
+                    CityComboBox.ItemsSource = cities;
+                    CityComboBox.DisplayMemberPath = "DisplayName";
+                    CityComboBox.IsDropDownOpen = true;
                 }
             }
             else
             {
-                cityComboBox.ItemsSource = null;
+                CityComboBox.ItemsSource = null;
             }
         }
 
