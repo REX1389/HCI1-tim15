@@ -121,10 +121,6 @@ namespace VremenskaPrognoza
                 }
             }
         }
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
         //TO-DO: Uzeti podatke grada, datuma i parametra koji se selektuje, poslati upit i proslediti dalje u ovu metodu
         private async void generateGraph(string title, ChartValues<double> values, string graphtitle)
@@ -371,11 +367,18 @@ namespace VremenskaPrognoza
             int index = int.Parse(name.Split("_")[1]);
             ChosenDay = index;
         }
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+
+            UpdateGraph();
+        }
 
         private void UpdateDays()
         {
             if (Days.Count() < 11)
                 return;
+
             for(int i = 1; i <= 11; i++)
             {
                 ForecastDay day = Days[i - 1];
@@ -387,6 +390,13 @@ namespace VremenskaPrognoza
                 image.Source = new BitmapImage(new Uri("http:" + day.day.condition.icon));
                 text_2.Text = day.day.mintemp_c.ToString() + "°C - " + day.day.maxtemp_c.ToString() + "°C";
             }
+
+            UpdateGraph();
+        }
+
+        private void UpdateGraph()
+        {
+
         }
     }
 }
