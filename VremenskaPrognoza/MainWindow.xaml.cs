@@ -37,6 +37,7 @@ namespace VremenskaPrognoza
         private readonly HttpClient _client;
 
         private int ChosenDay;
+        private string ChosenGraph = "";
         private List<ForecastDay> Days = new List<ForecastDay>();
 
         public MainWindow()
