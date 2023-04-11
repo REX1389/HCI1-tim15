@@ -16,6 +16,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System.Windows.Shapes;
 using LiveCharts.Events;
+using System.Windows.Markup;
 
 namespace VremenskaPrognoza
 {
@@ -73,6 +74,7 @@ namespace VremenskaPrognoza
         {
             if (CityComboBox.SelectedItem != null)
             {
+                Days.Clear();
                 string selectedItem = CityComboBox.SelectedItem.ToString();
 
                 DateTime day = DateTime.Now.AddDays(-7);
@@ -115,6 +117,7 @@ namespace VremenskaPrognoza
                         values.Add(data.forecast.forecastday[0].hour[i].pressure_mb);
                     }
                     generateGraph("Pressure_Mb", values, "Pressure");
+                    UpdateDays();
                 }
             }
         }
@@ -367,6 +370,23 @@ namespace VremenskaPrognoza
             string name = button.Name;
             int index = int.Parse(name.Split("_")[1]);
             ChosenDay = index;
+        }
+
+        private void UpdateDays()
+        {
+            if (Days.Count() < 11)
+                return;
+            for(int i = 1; i <= 11; i++)
+            {
+                ForecastDay day = Days[i - 1];
+                TextBlock text_1 = FindName("Button_" + i.ToString() + "_Text_1") as TextBlock;
+                Image image = FindName("Button_" + i.ToString() + "_Image") as Image;
+                TextBlock text_2 = FindName("Button_" + i.ToString() + "_Text_2") as TextBlock;
+
+                text_1.Text = DateTime.Parse(day.date).DayOfWeek.ToString();
+                image.Source = new BitmapImage(new Uri("http:" + day.day.condition.icon));
+                text_2.Text = day.day.mintemp_c.ToString() + "°C - " + day.day.maxtemp_c.ToString() + "°C";
+            }
         }
     }
 }
