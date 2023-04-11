@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System.Windows.Shapes;
-
+using LiveCharts.Events;
 
 namespace VremenskaPrognoza
 {
@@ -330,7 +330,18 @@ namespace VremenskaPrognoza
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //Ova funkcija se poziva kad se klikne na neko dugme za promenu dana
+            FrameworkElement button_old = FindName("Button_" + ChosenDay.ToString()) as FrameworkElement;
+            button_old.ClearValue(BackgroundProperty);
+            button_old.SetValue(BorderThicknessProperty, new Thickness(2, 4, 2, 4));
 
+            FrameworkElement button = sender as FrameworkElement;
+            button.SetValue(BackgroundProperty, Brushes.White);
+            button.SetValue(BorderThicknessProperty, new Thickness(2, 4, 2, 0));
+
+            string name = button.Name;
+            int index = int.Parse(name.Split("_")[1]);
+            ChosenDay = index;
         }
     }
 }
