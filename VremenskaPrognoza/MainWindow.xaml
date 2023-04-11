@@ -33,7 +33,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column= "0" Text="" FontSize="36" TextAlignment="Center"
-                            x:Name="BigTemp" />
+                            x:Name="BigTemp" Margin="20, 10"/>
                 <Image Grid.Column="1" x:Name="currentWeatherImage" Margin="10, 10"></Image>
             </Grid>
             <!-- Temperature -->
