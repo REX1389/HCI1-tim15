@@ -242,7 +242,7 @@
         <Grid Margin="10,251,10,-325" Grid.Row="2">
             <lvc:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Right" Margin="0,-197,0,23">
                 <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Title="Value" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                    <lvc:Axis Title="{Binding GraphTitle}" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
                 </lvc:CartesianChart.AxisY>
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis Title="Time" Labels="{Binding Labels}"></lvc:Axis>

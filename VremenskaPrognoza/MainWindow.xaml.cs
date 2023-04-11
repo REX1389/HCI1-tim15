@@ -23,6 +23,7 @@ namespace VremenskaPrognoza
     {
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
+        public string GraphTitle { get; set; }
         public Func<double, string> YFormatter { get; set; }
 
         private const string ApiKey = "4705475bbe9048e98ab185757230404";
@@ -88,7 +89,7 @@ namespace VremenskaPrognoza
                     {
                         values.Add(data.forecast.forecastday[0].hour[i].pressure_mb);
                     }
-                    generateGraph("Pressure_Mb", values);
+                    generateGraph("Pressure_Mb", values, "Pressure");
                 }
             }
         }
@@ -98,8 +99,9 @@ namespace VremenskaPrognoza
         }
 
         //TO-DO: Uzeti podatke grada, datuma i parametra koji se selektuje, poslati upit i proslediti dalje u ovu metodu
-        private async void generateGraph(string title, ChartValues<double> values)
+        private async void generateGraph(string title, ChartValues<double> values, string graphtitle)
         {
+            GraphTitle = graphtitle;
             try
             {
                 if (SeriesCollection != null)
