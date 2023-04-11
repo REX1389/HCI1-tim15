@@ -32,9 +32,11 @@ namespace VremenskaPrognoza
 
         private const string ForecastUrl =
             "http://api.weatherapi.com/v1/forecast.json?key={0}&q={1}&days={2}&aqi=no&alerts=yes";
+        private const string HistoryUrl = "http://api.weatherapi.com/v1/history.json?key={0}&q={1}&dt={2}";
         private readonly HttpClient _client;
 
         private int ChosenDay;
+        private List<ForecastDay> Days = new List<ForecastDay>();
 
         public MainWindow()
         {
@@ -72,12 +74,35 @@ namespace VremenskaPrognoza
             if (CityComboBox.SelectedItem != null)
             {
                 string selectedItem = CityComboBox.SelectedItem.ToString();
-                string url = string.Format(ForecastUrl, ApiKey, selectedItem, 1);
-                HttpResponseMessage response = await _client.GetAsync(url);
+
+                DateTime day = DateTime.Now.AddDays(-7);
+                string url;
+                HttpResponseMessage response;
+
+                for (int i = 1; i <= 7; i++)
+                {
+                    url = string.Format(HistoryUrl, ApiKey, selectedItem, day.Year.ToString() + "-" + day.Month.ToString() + "-" + day.Day.ToString());
+                    response = await _client.GetAsync(url);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        WeatherData data = JsonSerializer.Deserialize<WeatherData>(responseBody);
+
+                        Days.Add(data.forecast.forecastday[0]);
+                    }
+                    day = day.AddDays(1);
+                }
+
+                url = string.Format(ForecastUrl, ApiKey, selectedItem, 4);
+                response = await _client.GetAsync(url);
                 if (response.IsSuccessStatusCode)
                 {
                     string responseBody = await response.Content.ReadAsStringAsync();
                     WeatherData data = JsonSerializer.Deserialize<WeatherData>(responseBody);
+                    Days.Add(data.forecast.forecastday[0]);
+                    Days.Add(data.forecast.forecastday[1]);
+                    Days.Add(data.forecast.forecastday[2]);
+                    Days.Add(data.forecast.forecastday[3]);
                     
                     CityComboBox.Text = selectedItem;
                     
