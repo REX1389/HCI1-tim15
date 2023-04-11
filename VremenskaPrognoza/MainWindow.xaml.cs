@@ -41,7 +41,7 @@ namespace VremenskaPrognoza
 
             InitializeComponent();
             _client = new HttpClient();
-            generateGraph();
+            //generateGraph();
             
         }
 
@@ -83,7 +83,12 @@ namespace VremenskaPrognoza
                     CityComboBox.IsDropDownOpen = false;
                     CityComboBox.ItemsSource = null;
                     mapResponseToBoxes(data);
-
+                    ChartValues<double> values = new ChartValues<double> { };
+                    for(int i = 0; i < 24; i++)
+                    {
+                        values.Add(data.forecast.forecastday[0].hour[i].pressure_mb);
+                    }
+                    generateGraph("Pressure_Mb", values);
                 }
             }
         }
@@ -92,28 +97,34 @@ namespace VremenskaPrognoza
 
         }
 
-        private void generateGraph()
+        //TO-DO: Uzeti podatke grada, datuma i parametra koji se selektuje, poslati upit i proslediti dalje u ovu metodu
+        private async void generateGraph(string title, ChartValues<double> values)
         {
-            SeriesCollection = new SeriesCollection
+            try
             {
-                new LineSeries
+                if (SeriesCollection != null)
                 {
-                    Title = "Vreme neko",
-                    Values = new ChartValues<double> { 4, 6, 5, 2, 4, 2, 3, 6, 7, 8, 4, 2, 4, 5, 6, 3, 4, 5, 6, 8, 3, 4, 5, 5 }
+                    SeriesCollection.Clear();
+                    SeriesCollection.Add(new LineSeries
+                    {
+                        Title = title,
+                        Values = values
+                    });
                 }
-            };
-            Labels = new[] { "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00" };
-
-            //modifying the series collection will animate and update the chart
-            //SeriesCollection.Add(new LineSeries
-            //{
-            //    Title = "Series 4",
-            //    Values = new ChartValues<double> { 5, 3, 2, 4 },
-            //    LineSmoothness = 0, //0: straight lines, 1: really smooth lines
-            //    PointGeometry = Geometry.Parse("m 25 70.36218 20 -28 -20 22 -8 -6 z"),
-            //    PointGeometrySize = 50,
-            //    PointForeground = Brushes.Gray
-            //});
+                else
+                {
+                    SeriesCollection = new SeriesCollection
+                    {
+                        new LineSeries
+                        {
+                            Title = title,
+                            Values = values
+                        }
+                    };
+                    Labels = new[] { "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00" };
+                }
+            }
+            catch { }
             DataContext = this;
         }
 
