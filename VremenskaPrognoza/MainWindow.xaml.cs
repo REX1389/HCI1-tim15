@@ -40,6 +40,8 @@ namespace VremenskaPrognoza
         private string ChosenGraph = "temperature";
         private List<ForecastDay> Days = new List<ForecastDay>();
 
+
+
         public MainWindow()
         {
             ChosenDay = 8;
@@ -49,6 +51,8 @@ namespace VremenskaPrognoza
             //generateGraph();
             
         }
+
+
 
         private async void cityComboBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -71,6 +75,7 @@ namespace VremenskaPrognoza
                 CityComboBox.ItemsSource = null;
             }
         }
+
         private async void CityComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CityComboBox.SelectedItem != null)
@@ -112,16 +117,12 @@ namespace VremenskaPrognoza
                     CityComboBox.IsDropDownOpen = false;
                     CityComboBox.ItemsSource = null;
                     mapResponseToBoxes(data);
-                    ChartValues<double> values = new ChartValues<double> { };
-                    for(int i = 0; i < 24; i++)
-                    {
-                        values.Add(data.forecast.forecastday[0].hour[i].pressure_mb);
-                    }
-                    generateGraph("Pressure_Mb", values, "Pressure");
                     UpdateDays();
                 }
             }
         }
+
+
 
         //TO-DO: Uzeti podatke grada, datuma i parametra koji se selektuje, poslati upit i proslediti dalje u ovu metodu
         private async void generateGraph(string title, ChartValues<double> values, string graphtitle)
@@ -148,6 +149,47 @@ namespace VremenskaPrognoza
                             Values = values
                         }
                     };
+                    Labels = new[] { "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00" };
+                }
+            }
+            catch { }
+            DataContext = this;
+        }
+
+        private async void generateDoubleGraph(string title1, ChartValues<double> values1, string title2, ChartValues<double> values2, string graphtitle)
+        {
+            GraphTitle = graphtitle;
+            try
+            {
+                if (SeriesCollection != null)
+                {
+                    SeriesCollection.Clear();
+                    SeriesCollection.Add(new LineSeries
+                    {
+                        Title = title1,
+                        Values = values1
+                    });
+                    SeriesCollection.Add(new LineSeries
+                    {
+                        Title = title2,
+                        Values = values2
+                    });
+                }
+                else
+                {
+                    SeriesCollection = new SeriesCollection
+                    {
+                        new LineSeries
+                        {
+                            Title = title1,
+                            Values = values1
+                        }
+                    };
+                    SeriesCollection.Add(new LineSeries
+                    {
+                        Title = title2,
+                        Values = values2
+                    });
                     Labels = new[] { "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00" };
                 }
             }
@@ -190,6 +232,9 @@ namespace VremenskaPrognoza
             // alert.Text = data.alerts.alerts.ToString();
 
         }
+
+
+
         private class City
         {
             public int Id { get; set; }
@@ -205,6 +250,7 @@ namespace VremenskaPrognoza
                 return name;
             }
         }
+
         public class Location
         {
             public string name { get; set; }
@@ -216,6 +262,8 @@ namespace VremenskaPrognoza
             public long localtime_epoch { get; set; }
             public string localtime { get; set; }
         }
+
+
 
         public class Condition
         {
@@ -251,6 +299,8 @@ namespace VremenskaPrognoza
             public double gust_kph { get; set; }
         }
 
+
+
         public class WeatherData
         {
             public Location location { get; set; }
@@ -268,10 +318,12 @@ namespace VremenskaPrognoza
         {
             
         }
+
         public class Forecast
         {
             public List<ForecastDay> forecastday { get; set; }
         }
+
         public class ForecastDay
         {
             public string date { get; set; }
@@ -281,6 +333,8 @@ namespace VremenskaPrognoza
             public List<Hour> hour { get; set; }
         }
         
+
+
         public class Day
         {
             public double maxtemp_c { get; set; }
@@ -305,6 +359,7 @@ namespace VremenskaPrognoza
             public double uv { get; set; }
             
         }
+
         public class Hour
         {
             public int time_epoch { get; set; }
@@ -341,6 +396,7 @@ namespace VremenskaPrognoza
             public double gust_kph { get; set; }
             public double uv { get; set; }
         }
+
         public class Astro
         {
             public string sunrise { get; set; }
@@ -352,6 +408,8 @@ namespace VremenskaPrognoza
             public int is_moon_up { get; set; }
             public int is_sun_up { get; set; }
         }
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -367,7 +425,10 @@ namespace VremenskaPrognoza
             string name = button.Name;
             int index = int.Parse(name.Split("_")[1]);
             ChosenDay = index;
+
+            UpdateGraph();
         }
+
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
@@ -376,6 +437,8 @@ namespace VremenskaPrognoza
 
             UpdateGraph();
         }
+
+
 
         private void UpdateDays()
         {
@@ -399,7 +462,87 @@ namespace VremenskaPrognoza
 
         private void UpdateGraph()
         {
+            if (ChosenDay > Days.Count())
+                return;
+            ChartValues<double> values1 = new ChartValues<double> { };
+            ChartValues<double> values2 = new ChartValues<double> { };
 
+            switch(ChosenGraph)
+            {
+                case "temperature":
+                    for (int i = 0; i < 24; i++)
+                    {
+                        values1.Add(Days[ChosenDay - 1].hour[i].temp_c);
+                    }
+                    generateGraph("Temperature in °C", values1, "Temperature");
+                    break;
+                case "subjective temperature":
+                    for (int i = 0; i < 24; i++)
+                    {
+                        values1.Add(Days[ChosenDay - 1].hour[i].feelslike_c);
+                    }
+                    generateGraph("Subjective temperature in °C", values1, "Subjective temperature");
+                    break;
+                case "wind speed":
+                    for (int i = 0; i < 24; i++)
+                    {
+                        values1.Add(Days[ChosenDay - 1].hour[i].wind_kph);
+                    }
+                    generateGraph("Wind speed in km//h", values1, "Wind speed");
+                    break;
+                case "cloudiness":
+                    for (int i = 0; i < 24; i++)
+                    {
+                        values1.Add(Days[ChosenDay - 1].hour[i].cloud);
+                    }
+                    generateGraph("Cloudiness in %", values1, "Cloudiness");
+                    break;
+                case "precipitation":
+                    for (int i = 0; i < 24; i++)
+                    {
+                        values1.Add(Days[ChosenDay - 1].hour[i].precip_mm);
+                    }
+                    generateGraph("Precipitation in mm", values1, "Precipitation");
+                    break;
+                case "humidity":
+                    for (int i = 0; i < 24; i++)
+                    {
+                        values1.Add(Days[ChosenDay - 1].hour[i].humidity);
+                    }
+                    generateGraph("Humidity in %", values1, "Humidity");
+                    break;
+                case "air pressure":
+                    for (int i = 0; i < 24; i++)
+                    {
+                        values1.Add(Days[ChosenDay - 1].hour[i].pressure_mb);
+                    }
+                    generateGraph("Air pressure in Mb", values1, "Air pressure");
+                    break;
+                case "UV index":
+                    for (int i = 0; i < 24; i++)
+                    {
+                        values1.Add(Days[ChosenDay - 1].hour[i].uv);
+                    }
+                    generateGraph("UV index", values1, "UV index");
+                    break;
+                case "visibility":
+                    for (int i = 0; i < 24; i++)
+                    {
+                        values1.Add(Days[ChosenDay - 1].hour[i].vis_km);
+                    }
+                    generateGraph("Visibility in km", values1, "Visibility");
+                    break;
+                case "rain and snow":
+                    for (int i = 0; i < 24; i++)
+                    {
+                        values1.Add(Days[ChosenDay - 1].hour[i].chance_of_rain);
+                        values2.Add(Days[ChosenDay - 1].hour[i].chance_of_snow);
+                    }
+                    generateDoubleGraph("Chance of rain in %", values1, "Chance of snow in %", values2, "Rain and snow");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

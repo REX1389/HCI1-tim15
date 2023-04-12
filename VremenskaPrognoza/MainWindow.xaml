@@ -238,8 +238,8 @@
                 <ComboBoxItem Content = "subjective temperature" />
                 <ComboBoxItem Content = "wind speed" />
                 <ComboBoxItem Content = "cloudiness" />
-                <ComboBoxItem Content = "rainfall" />
-                <ComboBoxItem Content = "air moisture" />
+                <ComboBoxItem Content = "precipitation" />
+                <ComboBoxItem Content = "humidity" />
                 <ComboBoxItem Content = "air pressure" />
                 <ComboBoxItem Content = "UV index" />
                 <ComboBoxItem Content = "visibility" />
