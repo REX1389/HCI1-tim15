@@ -37,7 +37,7 @@ namespace VremenskaPrognoza
         private readonly HttpClient _client;
 
         private int ChosenDay;
-        private string ChosenGraph = "";
+        private string ChosenGraph = "temperature";
         private List<ForecastDay> Days = new List<ForecastDay>();
 
         public MainWindow()
@@ -370,7 +370,9 @@ namespace VremenskaPrognoza
         }
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            ComboBox comboBox = sender as ComboBox;
+            ComboBoxItem chosenItem = comboBox.SelectedItem as ComboBoxItem;
+            ChosenGraph = chosenItem.Content.ToString();
 
             UpdateGraph();
         }

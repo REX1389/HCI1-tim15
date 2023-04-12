@@ -233,7 +233,18 @@
         </Grid>
         <!-- hourly options -->
         <Grid Grid.Row="2" Margin="10, 10">
-            <ComboBox Name="ForecastComboBox" SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
+            <ComboBox Name="ForecastComboBox" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBoxItem Content = "temperature" IsSelected="True"/>
+                <ComboBoxItem Content = "subjective temperature" />
+                <ComboBoxItem Content = "wind speed" />
+                <ComboBoxItem Content = "cloudiness" />
+                <ComboBoxItem Content = "rainfall" />
+                <ComboBoxItem Content = "air moisture" />
+                <ComboBoxItem Content = "air pressure" />
+                <ComboBoxItem Content = "UV index" />
+                <ComboBoxItem Content = "visibility" />
+                <ComboBoxItem Content = "rain and snow" />
+            </ComboBox>
         </Grid>
         <!-- hourly graph -->
         <Grid Grid.Row="3">
