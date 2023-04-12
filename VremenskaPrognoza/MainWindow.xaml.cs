@@ -117,6 +117,7 @@ namespace VremenskaPrognoza
                     CityComboBox.IsDropDownOpen = false;
                     CityComboBox.ItemsSource = null;
                     mapResponseToBoxes(data);
+
                     UpdateDays();
                 }
             }
@@ -426,6 +427,7 @@ namespace VremenskaPrognoza
             int index = int.Parse(name.Split("_")[1]);
             ChosenDay = index;
 
+            UpdateSunlight();
             UpdateGraph();
         }
 
@@ -457,13 +459,27 @@ namespace VremenskaPrognoza
                 text_2.Text = day.day.mintemp_c.ToString() + "°C - " + day.day.maxtemp_c.ToString() + "°C";
             }
 
+            UpdateSunlight();
             UpdateGraph();
+        }
+
+        private void UpdateSunlight()
+        {
+            if (ChosenDay > Days.Count())
+                return;
+
+            TextBlock text_sunlight = FindName("Text_Sunlight") as TextBlock;
+            text_sunlight.Text = Days[ChosenDay - 1].astro.sunrise + " - " + Days[ChosenDay - 1].astro.sunset;
+
+            TextBlock text_moon = FindName("Text_Moon") as TextBlock;
+            text_moon.Text = Days[ChosenDay - 1].astro.moon_phase;
         }
 
         private void UpdateGraph()
         {
             if (ChosenDay > Days.Count())
                 return;
+
             ChartValues<double> values1 = new ChartValues<double> { };
             ChartValues<double> values2 = new ChartValues<double> { };
 
