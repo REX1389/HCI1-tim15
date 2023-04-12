@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -20,11 +21,27 @@ using System.Windows.Markup;
 
 namespace VremenskaPrognoza
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
-        public string GraphTitle { get; set; }
+        private string _graphTitle;
+        public string GraphTitle
+        {
+            get { return _graphTitle;}
+            set
+            {
+                _graphTitle = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GraphTitle)));
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
         public Func<double, string> YFormatter { get; set; }
 
         private const string ApiKey = "4705475bbe9048e98ab185757230404";
@@ -35,6 +52,7 @@ namespace VremenskaPrognoza
             "http://api.weatherapi.com/v1/forecast.json?key={0}&q={1}&days={2}&aqi=no&alerts=yes";
         private const string HistoryUrl = "http://api.weatherapi.com/v1/history.json?key={0}&q={1}&dt={2}";
         private readonly HttpClient _client;
+        private bool isGraphActive = false;
 
         private int ChosenDay;
         private string ChosenGraph = "temperature";
@@ -48,8 +66,9 @@ namespace VremenskaPrognoza
 
             InitializeComponent();
             _client = new HttpClient();
+            // DataContext = this;
             //generateGraph();
-            
+
         }
 
 
@@ -129,9 +148,10 @@ namespace VremenskaPrognoza
         private async void generateGraph(string title, ChartValues<double> values, string graphtitle)
         {
             GraphTitle = graphtitle;
+            // OnPropertyChanged("GraphTitle");
             try
             {
-                if (SeriesCollection != null)
+                if (isGraphActive)
                 {
                     SeriesCollection.Clear();
                     SeriesCollection.Add(new LineSeries
@@ -139,6 +159,7 @@ namespace VremenskaPrognoza
                         Title = title,
                         Values = values
                     });
+                    
                 }
                 else
                 {
@@ -150,6 +171,7 @@ namespace VremenskaPrognoza
                             Values = values
                         }
                     };
+                    isGraphActive = true;
                     Labels = new[] { "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00" };
                 }
             }
