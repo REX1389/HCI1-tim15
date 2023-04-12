@@ -438,7 +438,7 @@ namespace VremenskaPrognoza
         {
             //Ova funkcija se poziva kad se klikne na neko dugme za promenu dana
             FrameworkElement button_old = FindName("Button_" + ChosenDay.ToString()) as FrameworkElement;
-            button_old.ClearValue(BackgroundProperty);
+            button_old.SetValue(BackgroundProperty, Brushes.WhiteSmoke);
             button_old.SetValue(BorderThicknessProperty, new Thickness(2, 4, 2, 4));
 
             FrameworkElement button = sender as FrameworkElement;
